@@ -13,7 +13,7 @@ public class Player : MonoBehaviour
     [SerializeField]
     private GameObject _tripleShotPrefab;
     [SerializeField]
-    private bool _tripleShotActive = false;
+    private bool _isTripleShotActive = false;
 
     [SerializeField]
     private float _fireRate = 0.5f;
@@ -75,15 +75,12 @@ public class Player : MonoBehaviour
     }
     void FireLaser()
     {
-        //set laser starting position
+        //set laser firing position
         Vector3 laserStart = new Vector3(transform.position.x, transform.position.y + 1.0f, 0);
         
-        
-        if ( _tripleShotActive == true )
+        if ( _isTripleShotActive == true )
         {
-            GameObject triple = Instantiate(_tripleShotPrefab, transform.position + new Vector3(0,1.0f,0), Quaternion.identity );
-            Debug.Log("Triple Shot position: " + triple.transform.position);
-            Debug.Log("Ship Position: " + transform.position);
+            GameObject triple = Instantiate(_tripleShotPrefab, laserStart, Quaternion.identity );
         } 
         else
         {
@@ -101,10 +98,18 @@ public class Player : MonoBehaviour
 
         if (_playerLives < 1) {
             Destroy(this.gameObject);
-            //access Spawn Manager Script
             _spawnManager.OnPlayerDeath();
-            //call OnPlayerDeath()
 
+        }
+    }
+
+    public void ActivatePowerup( string powerup )
+    {
+        Debug.Log(powerup + " PowerUp Activated");
+        
+        if ( powerup == "Triple_Shot_Powerup" )
+        {
+            _isTripleShotActive = true;
         }
     }
 }
