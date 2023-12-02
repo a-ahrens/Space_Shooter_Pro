@@ -247,6 +247,9 @@ MonoBehaviour:
   _speed: 5
   _laserPrefab: {fileID: 3371848592769286434, guid: 4ec66cac866bc9c499ac5efd3ac8651e,
     type: 3}
+  _tripleShotPrefab: {fileID: 5292167023866909234, guid: fa29345ec50b57d45889c0f35b2bdb3b,
+    type: 3}
+  _tripleShotActive: 1
   _fireRate: 0.15
   _playerLives: 3
 --- !u!212 &518642873
@@ -438,9 +441,9 @@ Camera:
     height: 1
   near clip plane: 0.3
   far clip plane: 1000
-  field of view: 60
+  field of view: 60.60747
   orthographic: 0
-  orthographic size: 5
+  orthographic size: 5.8763356
   m_Depth: -1
   m_CullingMask:
     serializedVersion: 2

@@ -10,6 +10,10 @@ public class Player : MonoBehaviour
     private float _speed = 3.5f;
     [SerializeField]
     private GameObject _laserPrefab;
+    [SerializeField]
+    private GameObject _tripleShotPrefab;
+    [SerializeField]
+    private bool _tripleShotActive = false;
 
     [SerializeField]
     private float _fireRate = 0.5f;
@@ -42,6 +46,7 @@ public class Player : MonoBehaviour
         {
             FireLaser();
         }
+
     }
 
     void CalculateMovement()
@@ -72,7 +77,18 @@ public class Player : MonoBehaviour
     {
         //set laser starting position
         Vector3 laserStart = new Vector3(transform.position.x, transform.position.y + 1.0f, 0);
-        Instantiate(_laserPrefab, laserStart, Quaternion.identity);
+        
+        
+        if ( _tripleShotActive == true )
+        {
+            GameObject triple = Instantiate(_tripleShotPrefab, transform.position + new Vector3(0,1.0f,0), Quaternion.identity );
+            Debug.Log("Triple Shot position: " + triple.transform.position);
+            Debug.Log("Ship Position: " + transform.position);
+        } 
+        else
+        {
+            Instantiate(_laserPrefab, laserStart, Quaternion.identity);
+        }
 
         //fire timer cooldown
         _cooldownStart = Time.time;
