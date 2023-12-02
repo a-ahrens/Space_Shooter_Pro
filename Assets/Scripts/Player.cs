@@ -71,7 +71,7 @@ public class Player : MonoBehaviour
     void FireLaser()
     {
         //set laser starting position
-        Vector3 laserStart = new Vector3(transform.position.x, transform.position.y + 0.8f, 0);
+        Vector3 laserStart = new Vector3(transform.position.x, transform.position.y + 1.0f, 0);
         Instantiate(_laserPrefab, laserStart, Quaternion.identity);
 
         //fire timer cooldown
