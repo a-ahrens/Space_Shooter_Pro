@@ -103,14 +103,16 @@ public class Player : MonoBehaviour
         }
     }
 
-    public void ActivatePowerup( string powerup )
+    public void ActivateTripleShot()
     {
-        Debug.Log(powerup + " PowerUp Activated");
-        
-        if ( powerup == "Triple_Shot_Powerup" )
-        {
-            _isTripleShotActive = true;
-        }
+        _isTripleShotActive = true;
+        StartCoroutine(TripleShotTimeout());
+    }
+
+    IEnumerator TripleShotTimeout()
+    {
+        yield return new WaitForSeconds(5.0f);
+        _isTripleShotActive = false;
     }
 }
 
