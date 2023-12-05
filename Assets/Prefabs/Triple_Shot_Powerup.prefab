@@ -13,9 +13,10 @@ GameObject:
   - component: {fileID: 2167230986161467969}
   - component: {fileID: 2167230986161467982}
   - component: {fileID: 2167230986161467970}
+  - component: {fileID: 2050111232}
   m_Layer: 0
   m_Name: Triple_Shot_Powerup
-  m_TagString: Powerup
+  m_TagString: Powerup Triple Shot
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -70,8 +71,8 @@ SpriteRenderer:
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
-  m_SortingLayerID: 0
-  m_SortingLayer: 0
+  m_SortingLayerID: -724044369
+  m_SortingLayer: 2
   m_SortingOrder: 0
   m_Sprite: {fileID: 21300000, guid: ed6681d697652144a913093bf7ad1d43, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
@@ -133,3 +134,23 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1d7a906f293a1c447b5cdadcfc2fac9c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _fallRate: 3
+--- !u!95 &2050111232
+Animator:
+  serializedVersion: 3
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2167230986161467983}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 59a19034f9d4f044fb6c40d7a6b34692, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorControllerStateOnDisable: 0

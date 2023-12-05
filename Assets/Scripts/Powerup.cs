@@ -30,7 +30,7 @@ public class Powerup : MonoBehaviour
         if ( other.tag == "Player" )
         {
             Player player = other.GetComponent<Player>();
-            if ( player != null && transform.name == "Triple_Shot_Powerup")
+            if ( player != null && gameObject.tag.Contains("Triple Shot") )
             {
                 player.ActivateTripleShot();
             }

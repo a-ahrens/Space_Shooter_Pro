@@ -111,7 +111,8 @@ public class Player : MonoBehaviour
 
     IEnumerator TripleShotTimeout()
     {
-        yield return new WaitForSeconds(5.0f);
+        float spawnRate = UnityEngine.Random.Range(3.0f, 7.0f);
+        yield return new WaitForSeconds(spawnRate);
         _isTripleShotActive = false;
     }
 }

@@ -10,14 +10,19 @@ public class SpawnManager : MonoBehaviour
     [SerializeField] 
     private GameObject _enemyContainer;
     [SerializeField]
-    private float _spawnRate = 5.0f;
-
+    private float _enemySpawnRate = 5.0f;
     private bool _stopSpawning = false;
+
+    [SerializeField]
+    private GameObject _tripleShotPowerUp;
+
+
 
     // Start is called before the first frame update
     void Start()
     {
-        StartCoroutine(SpawnRoutine());
+        StartCoroutine(SpawnEnemyRoutine());
+        StartCoroutine(SpawnPowerUpRoutine());
     }
 
     // Update is called once per frame
@@ -26,21 +31,35 @@ public class SpawnManager : MonoBehaviour
         
     }
 
-    IEnumerator SpawnRoutine()
+    IEnumerator SpawnEnemyRoutine()
     {
         while ( _stopSpawning == false )
         {
-            float randomX = Random.Range(-11.3f, 11.3f);
-            Vector3 spawnPosition = new Vector3(randomX, 7.36f, 0);
-
+            Vector3 spawnPosition = CalcSpawnPosition();
             GameObject newEnemy = Instantiate(_enemyPrefab, spawnPosition, Quaternion.identity);
             newEnemy.transform.parent = _enemyContainer.transform;
-            yield return new WaitForSeconds(_spawnRate);
+            yield return new WaitForSeconds(_enemySpawnRate);
+        }
+    }
+
+    IEnumerator SpawnPowerUpRoutine()
+    {
+        while (_stopSpawning == false)
+        {
+            yield return new WaitForSeconds(7.0f);
+            Vector3 spawnPosition = CalcSpawnPosition();
+            Instantiate(_tripleShotPowerUp, spawnPosition, Quaternion.identity);
         }
     }
 
     public void OnPlayerDeath()
     {
         _stopSpawning = true;
+    }
+
+    private Vector3 CalcSpawnPosition()
+    {
+        float randomX = Random.Range(-10.3f, 10.3f);
+        return new Vector3(randomX, 7.36f, 0);
     }
 }
