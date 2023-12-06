@@ -377,6 +377,9 @@ MonoBehaviour:
   _enemySpawnRate: 5
   _tripleShotPowerUp: {fileID: 2167230986161467983, guid: c1747a6863656da469773586935c29d7,
     type: 3}
+  _powerups:
+  - {fileID: 2167230986161467983, guid: c1747a6863656da469773586935c29d7, type: 3}
+  - {fileID: 6045541566949320554, guid: ed89369b464662f4687c3830ab8c0623, type: 3}
 --- !u!4 &685758043
 Transform:
   m_ObjectHideFlags: 0
@@ -486,6 +489,7 @@ GameObject:
   - component: {fileID: 2060020536}
   - component: {fileID: 2060020535}
   - component: {fileID: 2060020537}
+  - component: {fileID: 2060020538}
   m_Layer: 0
   m_Name: Background
   m_TagString: Untagged
@@ -578,6 +582,25 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 0
+--- !u!95 &2060020538
+Animator:
+  serializedVersion: 3
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2060020534}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: c518f7a4f19efd24bbcf261e187c778b, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorControllerStateOnDisable: 0
 --- !u!1 &2106304820
 GameObject:
   m_ObjectHideFlags: 0

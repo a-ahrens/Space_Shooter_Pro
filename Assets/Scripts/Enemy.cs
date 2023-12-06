@@ -7,17 +7,9 @@ public class Enemy : MonoBehaviour
     [SerializeField]
     private float _movementSpeed = 4.0f;
 
-    // Start is called before the first frame update
-    void Start()
-    {
-        //spawn in random locations within the screen
-    }
-
-    // Update is called once per frame
     void Update()
     {
         Vector3 movement = new Vector3(0, -1, 0);
-        //enemy movement
         transform.Translate(movement * _movementSpeed * Time.deltaTime);
 
         //respawn at top with random x position

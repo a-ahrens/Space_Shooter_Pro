@@ -8,6 +8,7 @@ public class Player : MonoBehaviour
 {
     [SerializeField]
     private float _speed = 3.5f;
+
     [SerializeField]
     private GameObject _laserPrefab;
     [SerializeField]
@@ -106,15 +107,27 @@ public class Player : MonoBehaviour
     public void ActivateTripleShot()
     {
         _isTripleShotActive = true;
-        StartCoroutine(TripleShotTimeout());
+        StartCoroutine(DeactivateTripleShot());
     }
 
-    IEnumerator TripleShotTimeout()
+    IEnumerator DeactivateTripleShot()
     {
-        float spawnRate = UnityEngine.Random.Range(3.0f, 7.0f);
-        yield return new WaitForSeconds(spawnRate);
+        yield return new WaitForSeconds(7.0f);
         _isTripleShotActive = false;
     }
+
+    public void ActivateSpeedPowerup()
+    {
+        _speed *= 2.0f;
+        StartCoroutine(DeactivateSpeedBoost());
+    }
+
+    IEnumerator DeactivateSpeedBoost()
+    {
+        yield return new WaitForSeconds(5.0f);
+        _speed /= 2.0f;
+    }
+
 }
 
 

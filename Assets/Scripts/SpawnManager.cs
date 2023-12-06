@@ -13,19 +13,14 @@ public class SpawnManager : MonoBehaviour
     private float _enemySpawnRate = 5.0f;
     private bool _stopSpawning = false;
 
-    [SerializeField]
-    private GameObject _tripleShotPowerUp;
+    [SerializeField] private GameObject [] _powerups;
 
-
-
-    // Start is called before the first frame update
     void Start()
     {
         StartCoroutine(SpawnEnemyRoutine());
         StartCoroutine(SpawnPowerUpRoutine());
     }
 
-    // Update is called once per frame
     void Update()
     {
         
@@ -47,8 +42,9 @@ public class SpawnManager : MonoBehaviour
         while (_stopSpawning == false)
         {
             yield return new WaitForSeconds(7.0f);
+            int powerupOption = Random.Range(0, _powerups.Length);
             Vector3 spawnPosition = CalcSpawnPosition();
-            Instantiate(_tripleShotPowerUp, spawnPosition, Quaternion.identity);
+            Instantiate(_powerups[powerupOption], spawnPosition, Quaternion.identity);
         }
     }
 

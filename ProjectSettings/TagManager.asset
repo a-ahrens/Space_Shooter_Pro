@@ -8,6 +8,7 @@ TagManager:
   - Laser
   - Powerup
   - Powerup Triple Shot
+  - Powerup Speed
   layers:
   - Default
   - TransparentFX
