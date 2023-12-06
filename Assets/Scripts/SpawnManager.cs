@@ -9,6 +9,7 @@ public class SpawnManager : MonoBehaviour
     private GameObject _enemyPrefab;
     [SerializeField] 
     private GameObject _enemyContainer;
+
     [SerializeField]
     private float _enemySpawnRate = 5.0f;
     private bool _stopSpawning = false;

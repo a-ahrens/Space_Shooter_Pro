@@ -250,6 +250,7 @@ MonoBehaviour:
   _tripleShotPrefab: {fileID: 5292167023866909234, guid: fa29345ec50b57d45889c0f35b2bdb3b,
     type: 3}
   _isTripleShotActive: 0
+  _isShieldActive: 0
   _fireRate: 0.15
   _playerLives: 3
 --- !u!212 &518642873
@@ -375,11 +376,10 @@ MonoBehaviour:
     type: 3}
   _enemyContainer: {fileID: 2106304820}
   _enemySpawnRate: 5
-  _tripleShotPowerUp: {fileID: 2167230986161467983, guid: c1747a6863656da469773586935c29d7,
-    type: 3}
   _powerups:
   - {fileID: 2167230986161467983, guid: c1747a6863656da469773586935c29d7, type: 3}
   - {fileID: 6045541566949320554, guid: ed89369b464662f4687c3830ab8c0623, type: 3}
+  - {fileID: 5147102305066023710, guid: 6acb3fd6dae2c554394a12d487ad847c, type: 3}
 --- !u!4 &685758043
 Transform:
   m_ObjectHideFlags: 0

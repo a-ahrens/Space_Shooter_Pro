@@ -1,5 +1,4 @@
-﻿using System;
-using System.Collections;
+﻿using System.Collections;
 using System.Collections.Generic;
 using System.Threading;
 using UnityEngine;
@@ -13,8 +12,11 @@ public class Player : MonoBehaviour
     private GameObject _laserPrefab;
     [SerializeField]
     private GameObject _tripleShotPrefab;
+    
     [SerializeField]
     private bool _isTripleShotActive = false;
+    [SerializeField] 
+    private bool _isShieldActive = false;
 
     [SerializeField]
     private float _fireRate = 0.5f;
@@ -95,7 +97,14 @@ public class Player : MonoBehaviour
 
     public void Damage()
     {
-        _playerLives--;
+        if ( _isShieldActive == true )
+        {
+            _isShieldActive = false;
+        }
+        else
+        {
+            _playerLives--;
+        }
 
         if (_playerLives < 1) {
             Destroy(this.gameObject);
@@ -106,6 +115,9 @@ public class Player : MonoBehaviour
 
     public void ActivateTripleShot()
     {
+        //need to check if _isTriplShotActive is currently true.
+        //if so, find way to add time to current coroutine or cancel it and start a new one
+        
         _isTripleShotActive = true;
         StartCoroutine(DeactivateTripleShot());
     }
@@ -128,6 +140,10 @@ public class Player : MonoBehaviour
         _speed /= 2.0f;
     }
 
+    public void ActivateShieldPowerup()
+    {
+        _isShieldActive = true;
+    }
 }
 
 
