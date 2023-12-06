@@ -25,19 +25,15 @@ public class Powerup : MonoBehaviour
         if ( other.tag == "Player" )
         {
             Player player = other.GetComponent<Player>();
-            if ( player != null && _powerupID == 0 )
+            if ( player != null )
             {
-                player.ActivateTripleShot();
-            }
-
-            if ( player != null && _powerupID == 1 )
-            {
-                player.ActivateSpeedPowerup();
-            }
-
-            if ( player != null && _powerupID == 2 )
-            {
-                player.ActivateShieldPowerup();
+                switch ( _powerupID )
+                {
+                    case 0: player.ActivateTripleShot(); break;
+                    case 1: player.ActivateSpeedPowerup(); break;
+                    case 2: player.ActivateShieldPowerup(); break;
+                    default: break;
+                }
             }
 
             Destroy(this.gameObject);
