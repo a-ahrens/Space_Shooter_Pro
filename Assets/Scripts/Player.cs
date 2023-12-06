@@ -27,6 +27,9 @@ public class Player : MonoBehaviour
     private int _playerLives = 3;
     private SpawnManager _spawnManager;
 
+    [SerializeField]
+    private GameObject _shieldVisualizer;
+
 
     // Start is called before the first frame update
     void Start()
@@ -100,6 +103,7 @@ public class Player : MonoBehaviour
         if ( _isShieldActive == true )
         {
             _isShieldActive = false;
+            _shieldVisualizer.SetActive( false );
         }
         else
         {
@@ -143,6 +147,7 @@ public class Player : MonoBehaviour
     public void ActivateShieldPowerup()
     {
         _isShieldActive = true;
+        _shieldVisualizer.SetActive(true);
     }
 }
 
