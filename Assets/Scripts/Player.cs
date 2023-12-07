@@ -119,6 +119,7 @@ public class Player : MonoBehaviour
         else
         {
             _playerLives--;
+            _uiManager.UpdateLiveSprites(_playerLives);
         }
 
         if (_playerLives < 1) {

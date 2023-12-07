@@ -46,7 +46,8 @@ public class Enemy : MonoBehaviour
         if ( other.tag == "Laser" )
         {
             Destroy(other.gameObject);
-            if (_player != null )
+
+            if (_player != null )       //if player isnt dead then
             {
                 _player.IncreaseScore(10);
             }
