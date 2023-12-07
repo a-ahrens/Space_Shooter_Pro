@@ -15,10 +15,14 @@ public class UIManager : MonoBehaviour
     [SerializeField]
     private Image _liveImage;
 
+    [SerializeField]
+    private Text _gameOverText;
+
     // Start is called before the first frame update
     void Start()
     {
         _scoreText.text = "Score: " + 0;
+        _gameOverText.gameObject.SetActive(false);
     }
 
     public void UpdateScore(int playerScore)
@@ -29,5 +33,10 @@ public class UIManager : MonoBehaviour
     public void UpdateLiveSprites(int lives)
     {
         _liveImage.sprite = _liveSprites[lives];
+
+        if( lives == 0 )
+        {
+            _gameOverText.gameObject.SetActive(true);
+        }
     }
 }
