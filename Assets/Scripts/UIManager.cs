@@ -36,7 +36,20 @@ public class UIManager : MonoBehaviour
 
         if( lives == 0 )
         {
-            _gameOverText.gameObject.SetActive(true);
+            StartCoroutine(DisplayGameOver());
         }
+    }
+
+    IEnumerator DisplayGameOver()
+    {
+        while (true)
+        {
+            _gameOverText.gameObject.SetActive(true);
+            yield return new WaitForSeconds(1.0f);
+
+            _gameOverText.gameObject.SetActive(false);
+            yield return new WaitForSeconds(1.0f);
+        }
+
     }
 }
