@@ -1,5 +1,4 @@
 ﻿using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -18,11 +17,27 @@ public class UIManager : MonoBehaviour
     [SerializeField]
     private Text _gameOverText;
 
+    [SerializeField]
+    private Text _restartText;
+    private GameManager _gameManager;
+
     // Start is called before the first frame update
     void Start()
     {
         _scoreText.text = "Score: " + 0;
         _gameOverText.gameObject.SetActive(false);
+        _restartText.gameObject.SetActive(false);
+        _gameManager = GameObject.Find("Game_Manager").GetComponent<GameManager>();
+
+        if (_gameManager == null)
+        {
+            Debug.LogError("Game Manager not found");
+        }
+    }
+
+    void Update()
+    {
+
     }
 
     public void UpdateScore(int playerScore)
@@ -36,11 +51,18 @@ public class UIManager : MonoBehaviour
 
         if( lives == 0 )
         {
-            StartCoroutine(DisplayGameOver());
+            GameOverSequence();
         }
     }
 
-    IEnumerator DisplayGameOver()
+    void GameOverSequence()
+    {
+        StartCoroutine(FlickerGameOver());
+        _restartText.gameObject.SetActive(true);
+        _gameManager.GameOver();
+    }
+
+    IEnumerator FlickerGameOver()
     {
         while (true)
         {
