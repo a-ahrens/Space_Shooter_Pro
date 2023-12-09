@@ -8,10 +8,23 @@ public class Enemy : MonoBehaviour
     private float _movementSpeed = 4.0f;
 
     private Player _player;
+    private Animator _animator;
 
     void Start()
     {
         _player = GameObject.Find("Player").GetComponent<Player>();
+
+        if ( _player == null )
+        {
+            Debug.LogError("Player is null.");
+        }
+
+        _animator = gameObject.GetComponent<Animator>();
+
+        if ( _animator == null )
+        {
+            Debug.LogError("Animator is null");
+        }
     }
 
     void Update()
@@ -31,6 +44,7 @@ public class Enemy : MonoBehaviour
     private void OnTriggerEnter2D(Collider2D other)
     {
         //player collides with enemy
+
         if ( other.tag == "Player" )
         {
             Player player = other.GetComponent<Player>();
@@ -38,8 +52,9 @@ public class Enemy : MonoBehaviour
             {
                 player.Damage();
             }
-
-            Destroy(this.gameObject);
+            _animator.SetTrigger("OnEnemyDeath");
+            _movementSpeed = 0;
+            Destroy(this.gameObject, 2.8f);
         }
 
         //laser collides with enemy
@@ -51,9 +66,12 @@ public class Enemy : MonoBehaviour
             {
                 _player.IncreaseScore(10);
             }
-
-            Destroy(this.gameObject);
+            _animator.SetTrigger("OnEnemyDeath");
+            _movementSpeed = 0;
+            Destroy(this.gameObject, 2.8f);
         }
+
+        
     }
 
 
