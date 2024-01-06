@@ -16,19 +16,21 @@ public class SpawnManager : MonoBehaviour
 
     [SerializeField] private GameObject [] _powerups;
 
-    void Start()
-    {
-        StartCoroutine(SpawnEnemyRoutine());
-        StartCoroutine(SpawnPowerUpRoutine());
-    }
-
     void Update()
     {
         
     }
 
+    public void StartSpawning()
+    {
+        StartCoroutine(SpawnEnemyRoutine());
+        StartCoroutine(SpawnPowerUpRoutine());
+    }
+
     IEnumerator SpawnEnemyRoutine()
     {
+        yield return new WaitForSeconds(3.0f);
+
         while ( _stopSpawning == false )
         {
             Vector3 spawnPosition = CalcSpawnPosition();
@@ -40,6 +42,8 @@ public class SpawnManager : MonoBehaviour
 
     IEnumerator SpawnPowerUpRoutine()
     {
+        yield return new WaitForSeconds(3.0f);
+
         while (_stopSpawning == false)
         {
             yield return new WaitForSeconds(7.0f);

@@ -54,7 +54,7 @@ public class Enemy : MonoBehaviour
             }
             _animator.SetTrigger("OnEnemyDeath");
             _movementSpeed = 0;
-            Destroy(this.gameObject, 2.8f);
+            Destroy(this.gameObject, 3.0f);
         }
 
         //laser collides with enemy
@@ -68,7 +68,8 @@ public class Enemy : MonoBehaviour
             }
             _animator.SetTrigger("OnEnemyDeath");
             _movementSpeed = 0;
-            Destroy(this.gameObject, 2.8f);
+            
+            Destroy(this.gameObject, 3.0f);
         }
 
         
