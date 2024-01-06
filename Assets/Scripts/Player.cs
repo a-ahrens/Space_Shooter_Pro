@@ -1,44 +1,40 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.Threading;
 using UnityEngine;
 
 public class Player : MonoBehaviour
 {
-    [SerializeField]
-    private float _speed = 3.5f;
+    [SerializeField] private int _score = 0;
+    [SerializeField] private int _playerLives = 3;
 
-    [SerializeField]
-    private GameObject _laserPrefab;
-    [SerializeField]
-    private GameObject _tripleShotPrefab;
+    [SerializeField] private float _speed = 3.5f;
+    [SerializeField] private float _fireRate = 0.5f;
+                     private float _cooldownStart = 0f;
+                     private float _cooldownEnd = -1f;
+
+    [SerializeField] private GameObject _laserPrefab;
+    [SerializeField] private GameObject _tripleShotPrefab;
+    [SerializeField] private GameObject _shieldVisualizer;
+    [SerializeField] private GameObject _rightEngineDamage;
+    [SerializeField] private GameObject _leftEngineDamage;
     
-    [SerializeField]
-    private bool _isTripleShotActive = false;
-    [SerializeField] 
-    private bool _isShieldActive = false;
+    [SerializeField] private bool _isTripleShotActive = false;
+    [SerializeField] private bool _isShieldActive = false;
 
-    [SerializeField]
-    private float _fireRate = 0.5f;
-    private float _cooldownStart = 0f;
-    private float _cooldownEnd = -1f;
+                     private SpawnManager _spawnManager;
+                     private UIManager _uiManager;
 
-    [SerializeField]
-    private int _playerLives = 3;
-    private SpawnManager _spawnManager;
 
-    [SerializeField]
-    private GameObject _shieldVisualizer;
-
-    [SerializeField]
-    private int _score = 0;
-
-    private UIManager _uiManager;
 
 
     // Start is called before the first frame update
     void Start()
     {
+        _rightEngineDamage.SetActive(false);
+        _leftEngineDamage.SetActive(false);
+        
         transform.position = new Vector3(0, 0, 0);
         _spawnManager = GameObject.Find("Spawn_Manager").GetComponent<SpawnManager>();
         _uiManager = GameObject.Find("Canvas").GetComponent<UIManager>();
@@ -119,6 +115,7 @@ public class Player : MonoBehaviour
         else
         {
             _playerLives--;
+            EngineFireAnimation();
             _uiManager.UpdateLiveSprites(_playerLives);
         }
 
@@ -126,6 +123,19 @@ public class Player : MonoBehaviour
             Destroy(this.gameObject);
             _spawnManager.OnPlayerDeath();
 
+        }
+    }
+
+    private void EngineFireAnimation()
+    {
+        if (_playerLives == 2)
+        {
+            _rightEngineDamage.SetActive( true );
+        }
+
+        if ( _playerLives == 1) 
+        {
+            _leftEngineDamage.SetActive( true );
         }
     }
 
