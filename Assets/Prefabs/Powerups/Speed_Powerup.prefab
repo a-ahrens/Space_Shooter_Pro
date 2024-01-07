@@ -136,6 +136,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _fallRate: 3
   _powerupID: 1
+  _audioClip: {fileID: 8300000, guid: 5ee343246919d2b4bba63ae629e95494, type: 3}
 --- !u!95 &2393109598929789019
 Animator:
   serializedVersion: 3

@@ -19,13 +19,18 @@ public class Player : MonoBehaviour
     [SerializeField] private GameObject _shieldVisualizer;
     [SerializeField] private GameObject _rightEngineDamage;
     [SerializeField] private GameObject _leftEngineDamage;
-    
+
+
+    [SerializeField] private AudioClip _fireLaserAudio;
+    [SerializeField] private AudioClip _explosionAudio;
+                     private AudioSource _audioSource;
+
+
     [SerializeField] private bool _isTripleShotActive = false;
     [SerializeField] private bool _isShieldActive = false;
 
                      private SpawnManager _spawnManager;
                      private UIManager _uiManager;
-
 
 
 
@@ -38,6 +43,7 @@ public class Player : MonoBehaviour
         transform.position = new Vector3(0, 0, 0);
         _spawnManager = GameObject.Find("Spawn_Manager").GetComponent<SpawnManager>();
         _uiManager = GameObject.Find("Canvas").GetComponent<UIManager>();
+        _audioSource = GetComponent<AudioSource>();
 
         if( _spawnManager == null )
         {
@@ -47,6 +53,15 @@ public class Player : MonoBehaviour
         if( _uiManager == null )
         {
             Debug.LogError("The UI Manager is NULL");
+        }
+
+        if (_audioSource == null )
+        {
+            Debug.LogError("The Player Audio Source is Null");
+        }
+        else
+        {
+            _audioSource.clip = _fireLaserAudio;
         }
     }
 
@@ -88,6 +103,7 @@ public class Player : MonoBehaviour
     }
     void FireLaser()
     {
+        
         //set laser firing position
         Vector3 laserStart = new Vector3(transform.position.x, transform.position.y + 1.0f, 0);
         
@@ -99,6 +115,9 @@ public class Player : MonoBehaviour
         {
             Instantiate(_laserPrefab, laserStart, Quaternion.identity);
         }
+
+        //activate laser sound
+        _audioSource.Play();
 
         //fire timer cooldown
         _cooldownStart = Time.time;
@@ -120,9 +139,11 @@ public class Player : MonoBehaviour
         }
 
         if (_playerLives < 1) {
+            _audioSource.clip = _explosionAudio;
+            _audioSource.Play();
+
             Destroy(this.gameObject);
             _spawnManager.OnPlayerDeath();
-
         }
     }
 
