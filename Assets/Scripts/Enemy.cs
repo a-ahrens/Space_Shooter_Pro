@@ -68,6 +68,8 @@ public class Enemy : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D other)
     {
+        
+
         //player collides with enemy
         if ( other.tag == "Player" )
         {
@@ -77,6 +79,7 @@ public class Enemy : MonoBehaviour
             {
                 player.Damage();
             }
+
             _audioSource.Play();
             _animator.SetTrigger("OnEnemyDeath");
             _movementSpeed = 0;
@@ -85,24 +88,19 @@ public class Enemy : MonoBehaviour
             Destroy(this.gameObject, 3.0f);
 
         }
+    }
 
-        //laser collides with enemy
-        if ( other.tag == "Laser" )
+    public void Damage()
+    {
+        if (_player != null)       //if player isnt dead then
         {
-            Destroy(other.gameObject);
-
-            if (_player != null )       //if player isnt dead then
-            {
-                _player.IncreaseScore(10);
-            }
-            _audioSource.Play();
-            _animator.SetTrigger("OnEnemyDeath");
-            _movementSpeed = 0;
-            Destroy(GetComponent<Collider2D>());
-            Destroy(this.gameObject, 3.0f);
+            _player.IncreaseScore(10);
         }
-
-        
+        _audioSource.Play();
+        _animator.SetTrigger("OnEnemyDeath");
+        _movementSpeed = 0;
+        Destroy(GetComponent<Collider2D>());
+        Destroy(this.gameObject, 3.0f);
     }
 
 }
