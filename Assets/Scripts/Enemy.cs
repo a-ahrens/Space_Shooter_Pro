@@ -6,9 +6,10 @@ public class Enemy : MonoBehaviour
 {
     [SerializeField]
     private float _movementSpeed = 4.0f;
-
+    private float _fireRate = 3.0f;
+    private float _canFire = -1;
     private AudioSource _audioSource;
-
+    [SerializeField] private GameObject _enemyLaserPrefab;
     private Player _player;
     private Animator _animator;
 
@@ -36,16 +37,33 @@ public class Enemy : MonoBehaviour
 
     void Update()
     {
+        CalculateMovement();
+
+        if( Time.time > _canFire )
+        {
+            _fireRate = Random.Range(3f, 7f);
+            _canFire = Time.time + _fireRate;
+            GameObject enemyLaser = Instantiate(_enemyLaserPrefab, transform.position, Quaternion.identity);
+            Laser[] lasers = enemyLaser.GetComponentsInChildren<Laser>();
+            for (int i = 0; i < lasers.Length; i++)
+            {
+                lasers[i].AssignEnemyLaser();
+            }
+            //Debug.Break();
+        }
+    }
+
+    void CalculateMovement()
+    {
         Vector3 movement = new Vector3(0, -1, 0);
         transform.Translate(movement * _movementSpeed * Time.deltaTime);
 
         //respawn at top with random x position
-        if ( transform.position.y < -5.4f )
+        if (transform.position.y < -5.4f)
         {
             float randomX = Random.Range(-11.3f, 11.3f);
             transform.position = new Vector3(randomX, 7.36f, 0);
         }
-
     }
 
     private void OnTriggerEnter2D(Collider2D other)
@@ -59,10 +77,13 @@ public class Enemy : MonoBehaviour
             {
                 player.Damage();
             }
+            _audioSource.Play();
             _animator.SetTrigger("OnEnemyDeath");
             _movementSpeed = 0;
             //_audioSource.Play();
+            Destroy(GetComponent<Collider2D>());
             Destroy(this.gameObject, 3.0f);
+
         }
 
         //laser collides with enemy
@@ -77,12 +98,11 @@ public class Enemy : MonoBehaviour
             _audioSource.Play();
             _animator.SetTrigger("OnEnemyDeath");
             _movementSpeed = 0;
-            
+            Destroy(GetComponent<Collider2D>());
             Destroy(this.gameObject, 3.0f);
         }
 
         
     }
-
 
 }
