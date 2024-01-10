@@ -7,6 +7,7 @@ using UnityEngine;
 public class Player : MonoBehaviour
 {
     [SerializeField] private int _score = 0;
+                     private int _highScore = 0;
     [SerializeField] private int _playerLives = 3;
 
     [SerializeField] private float _speed = 3.5f;
@@ -44,6 +45,8 @@ public class Player : MonoBehaviour
         _spawnManager = GameObject.Find("Spawn_Manager").GetComponent<SpawnManager>();
         _uiManager = GameObject.Find("Canvas").GetComponent<UIManager>();
         _audioSource = GetComponent<AudioSource>();
+        
+        LoadHighScore();
 
         if( _spawnManager == null )
         {
@@ -144,6 +147,7 @@ public class Player : MonoBehaviour
 
             Destroy(this.gameObject);
             _spawnManager.OnPlayerDeath();
+            CheckHighScore();
         }
     }
 
@@ -196,7 +200,21 @@ public class Player : MonoBehaviour
     public void IncreaseScore( int points )
     {
         _score += points;
-        _uiManager.UpdateScore( _score );
+        _uiManager.UpdateScoreText( _score );
+    }
+    private void CheckHighScore()
+    {
+        if (_score > _highScore)
+        {
+            _highScore = _score;
+            _uiManager.UpdateHighScoreText( _highScore );
+        }
+    }
+    private void LoadHighScore()
+    {
+        //_highScore = 20;
+        Debug.Log("Loading High Score: " + _highScore);
+        _uiManager.UpdateHighScoreText( _highScore );
     }
 }
 

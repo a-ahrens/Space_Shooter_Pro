@@ -7,6 +7,8 @@ public class UIManager : MonoBehaviour
 
     [SerializeField]
     private Text _scoreText;
+    [SerializeField]
+    private Text _highScoreText;
 
     [SerializeField]
     private Sprite[] _liveSprites;
@@ -40,9 +42,15 @@ public class UIManager : MonoBehaviour
 
     }
 
-    public void UpdateScore(int playerScore)
+    public void UpdateScoreText(int playerScore)
     {
         _scoreText.text = "Score: " + playerScore.ToString();
+    }
+
+    public void UpdateHighScoreText(int highScore)
+    {
+        _highScoreText.text = "High Score: " + highScore.ToString();
+        Debug.Log("High Score: " + highScore);
     }
 
     public void UpdateLiveSprites(int lives)
