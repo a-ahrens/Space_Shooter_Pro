@@ -50,7 +50,6 @@ public class UIManager : MonoBehaviour
     public void UpdateHighScoreText(int highScore)
     {
         _highScoreText.text = "High Score: " + highScore.ToString();
-        Debug.Log("High Score: " + highScore);
     }
 
     public void UpdateLiveSprites(int lives)

@@ -215,7 +215,6 @@ public class Player : MonoBehaviour
     private void LoadHighScore()
     {
         _highScore = PlayerPrefs.GetInt("HighScore", 0);
-        Debug.Log("Loading High Score: " + _highScore);
         _uiManager.UpdateHighScoreText( _highScore );
     }
 }

@@ -58,7 +58,7 @@ public class GameManager : MonoBehaviour
     public void LoadMenu()
     {
         Time.timeScale = 1f;
-        
+        AudioListener.pause = false;
         SceneManager.LoadScene(0);
     }
 
