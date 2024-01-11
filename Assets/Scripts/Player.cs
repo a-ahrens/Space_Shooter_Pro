@@ -208,11 +208,13 @@ public class Player : MonoBehaviour
         {
             _highScore = _score;
             _uiManager.UpdateHighScoreText( _highScore );
+            PlayerPrefs.SetInt("HighScore", _highScore);
+            PlayerPrefs.Save();
         }
     }
     private void LoadHighScore()
     {
-        //_highScore = 20;
+        _highScore = PlayerPrefs.GetInt("HighScore", 0);
         Debug.Log("Loading High Score: " + _highScore);
         _uiManager.UpdateHighScoreText( _highScore );
     }
