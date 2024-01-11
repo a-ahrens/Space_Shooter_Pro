@@ -134,7 +134,7 @@ public class Player : MonoBehaviour
             _isShieldActive = false;
             _shieldVisualizer.SetActive( false );
         }
-        else
+        else if( _playerLives > 0 )
         {
             _playerLives--;
             EngineFireAnimation();
