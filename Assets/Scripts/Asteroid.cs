@@ -9,11 +9,18 @@ public class Asteroid : MonoBehaviour
     [SerializeField]
     private GameObject _explosion;
     private SpawnManager _spawnManager;
+    private Countdown _countdown;
 
     // Start is called before the first frame update
     void Start()
     {
         _spawnManager = GameObject.Find("Spawn_Manager").GetComponent<SpawnManager>();
+        _countdown = GameObject.Find("Canvas").GetComponent<Countdown>();
+        if (_countdown == null)
+        {
+            Debug.LogError("Asteroid - Countdown not found");
+        }
+
     }
 
     // Update is called once per frame
@@ -26,6 +33,7 @@ public class Asteroid : MonoBehaviour
     private void OnDestroy()
     {
         _spawnManager.StartSpawning();
+        _countdown.SetCountdown();
     }
 
     //check if Laser Collides with asteroid (trigger event)

@@ -14,7 +14,6 @@ public class Countdown : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        SetCountdown();
         _uiManager = GetComponent<UIManager>();
 
         if(_uiManager == null)
@@ -31,10 +30,11 @@ public class Countdown : MonoBehaviour
         TimeRemaining();
     }
 
-    void SetCountdown()
+    public void SetCountdown()
     {
         _timeStart = Time.time;
         _timeEnd = _timeStart + _countdownTime;
+        _uiManager.DisplayCountdown();
     }
 
     void TimeRemaining()

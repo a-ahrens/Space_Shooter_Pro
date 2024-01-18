@@ -41,10 +41,9 @@ public class UIManager : MonoBehaviour
             Debug.LogError("Game Manager not found");
         }
     }
-
-    private void Update()
+    public void DisplayCountdown()
     {
-        
+        _countdownText.gameObject.SetActive(true);
     }
 
     public void UpdateScoreText(int playerScore)
