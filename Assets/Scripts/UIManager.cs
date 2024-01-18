@@ -7,6 +7,7 @@ public class UIManager : MonoBehaviour
 
     [SerializeField]
     private Text _scoreText;
+
     [SerializeField]
     private Text _highScoreText;
 
@@ -21,6 +22,10 @@ public class UIManager : MonoBehaviour
 
     [SerializeField]
     private Text _restartText;
+
+    [SerializeField]
+    private Text _countdownText;
+
     private GameManager _gameManager;
 
     // Start is called before the first frame update
@@ -37,9 +42,9 @@ public class UIManager : MonoBehaviour
         }
     }
 
-    void Update()
+    private void Update()
     {
-
+        
     }
 
     public void UpdateScoreText(int playerScore)
@@ -65,7 +70,12 @@ public class UIManager : MonoBehaviour
         }
     }
 
-    void GameOverSequence()
+    public void UpdateTimeRemainingText(float remainingTime)
+    {
+        _countdownText.text = remainingTime.ToString("N" + 2);
+    }
+
+   void GameOverSequence()
     {
         StartCoroutine(FlickerGameOver());
         _restartText.gameObject.SetActive(true);
